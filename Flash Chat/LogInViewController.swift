@@ -3,10 +3,11 @@
 //  Flash Chat
 //
 //  This is the view controller where users login
+//  Modified by Seth Mosgin
 
 
 import UIKit
-
+import Firebase
 
 class LogInViewController: UIViewController {
 
@@ -26,9 +27,16 @@ class LogInViewController: UIViewController {
    
     @IBAction func logInPressed(_ sender: AnyObject) {
 
-        
         //TODO: Log in the user
-        
+        Auth.auth().signIn(withEmail: emailTextfield.text!, password: passwordTextfield.text!) { (user, error) in
+            if error != nil {
+                print("Log in failed with error: \(error!)")
+            } else {
+                print("Log in success!")
+                
+                self.performSegue(withIdentifier: "goToChat", sender: self)
+            }
+        }
         
     }
     

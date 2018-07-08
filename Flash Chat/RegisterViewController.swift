@@ -3,10 +3,10 @@
 //  Flash Chat
 //
 //  This is the View Controller which registers new users with Firebase
-//
+//  Modified by Seth Mosgin
 
 import UIKit
-
+import Firebase
 
 class RegisterViewController: UIViewController {
 
@@ -32,7 +32,18 @@ class RegisterViewController: UIViewController {
 
         
         //TODO: Set up a new user on our Firbase database
-        
+        //This has a callback because it is asynchronous.  User creation happens without holding up the screen
+        Auth.auth().createUser(withEmail: emailTextfield.text!, password: passwordTextfield.text!) {
+            (data, error) in
+            
+            if error != nil {
+                print(error!)
+            } else {
+                //success
+                print("Registration Successful!")
+                self.performSegue(withIdentifier: "goToChat", sender: self)
+            }
+        }
         
 
         

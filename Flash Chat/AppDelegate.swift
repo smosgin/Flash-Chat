@@ -20,8 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //TODO: Initialise and Configure your Firebase here:
         FirebaseApp.configure()
         
-        let myDatabase = Database.database().reference()
-        myDatabase.setValue("We've got data!")
+        // These 2 lines will erase what is currently there/overwrite, so they were good for testing the connection, but let's have data persist instead
+//        let myDatabase = Database.database().reference()
+//        myDatabase.setValue("We've got data!")
         
         return true
     }

@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import SVProgressHUD
 
 class RegisterViewController: UIViewController {
 
@@ -29,7 +30,7 @@ class RegisterViewController: UIViewController {
   
     @IBAction func registerPressed(_ sender: AnyObject) {
         
-
+        SVProgressHUD.show()
         
         //TODO: Set up a new user on our Firbase database
         //This has a callback because it is asynchronous.  User creation happens without holding up the screen
@@ -41,6 +42,7 @@ class RegisterViewController: UIViewController {
             } else {
                 //success
                 print("Registration Successful!")
+                SVProgressHUD.dismiss()
                 self.performSegue(withIdentifier: "goToChat", sender: self)
             }
         }
